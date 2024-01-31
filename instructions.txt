@@ -1,0 +1,102 @@
+Yatzy Game Instructions
+======================
+
+Welcome to the Yatzy game! This game is a console-based Yatzy game with a graphical user interface (GUI) implemented using the Qt framework.
+======================
+
+1** - The number of players is entered in the Number of Players field. When the spinbox value changes, the name entry sections at the bottom are enabled, the players must be named. Only the number of selected players will be opened and values can be entered.
+
+2** -The game starts when you press the start game button. If you leave the name fields blank, player names will be set as "" and the names must be filled in before clicking the start game button.
+
+3** -The elapsed time is counted when the game starts.
+  Info: Includes information about which player's turn it is and how many attempts they have left.
+  Roll: rolls the dice of the player whose turn it is.
+  give turn: gives the turn to the next player.
+  pause: pauses the game.
+  new game: allows you to start the game from the beginning.
+  result/quit: determines the winner according to the current situation and ends the game. Pressing it a second time closes the GUI.
+ 
+ 
+4** -Winner determination is made when the quit button is pressed or when no player has the right to try. When this occurs, winners are recorded in the scoreBoard.txt file. And the background color changes.
+ 
+5** -When the roll button is pressed, a new value is generated for dice whose lock checkbox is not checked.
+
+The score board is updated after each roll and shows the most current status on the screen.
+
+======================
+
+Game Rules:
+-----------
+1. **Objective:** The objective of the game is to score points by rolling five dice to make specific combinations.
+2. **Starting a Game:** Launch the game by running the executable. You can specify the number of players (up to 9) at the start.
+3. **Player Names:** Enter the names of the players. The game supports up to 9 players.
+4. **Rolling the Dice:** Players take turns rolling five dice. They can roll up to three times per turn.
+5. **Scoring:** After each roll, the player can choose which combination to score. Refer to the "functions.hh" file for a list of possible combinations and their scores.
+6. **Locking Dice:** Players can choose to lock certain dice and re-roll the others.
+7. **Ending a Turn:** Players can end their turn at any time, but they must use all three rolls before the end of their turn.
+8. **Game Over:** The game ends when all players have completed their turns or when the "QUIT" button is pressed. The winner and final scores are displayed.
+
+GUI Elements:
+--------------
+- **Roll Button (`pb_roll`):** Initiates the dice rolling process.
+- **Give Turn Button (`pb_giveTurn`):** Ends the current player's turn.
+- **Start Button (`pb_start`):** Starts the game with the specified number of players.
+- **Pause Button (`pb_pause`):** Pauses or continues the game.
+- **Quit Button (`pb_quit`):** Ends the game; if pressed again, it closes the GUI.
+- **New Game Button (`pb_newGame`):** Starts a new game with a new set of players.
+
+Additional Information:
+------------------------
+- **Player Data:** Player information, including names, rolls left, and scores, is displayed on the GUI.
+- **Scoreboard (`scoreBoard`):** Shows the scores of all players.
+- **Dice Animation:** Dice rolling is animated on the GUI.
+- **Winner History:** The winners and their scores are saved in the "scoreBoard.txt" file in the build directory.
+
+Data Structures:
+----------------
+The game utilizes the following data structures:
+- **Player Structure (`Player`):** Contains information about each player, including ID, rolls left, latest point values, and best point values.
+- **Game Engine (`GameEngine`):** Manages the game logic, including player turns, dice rolling, and scoring.
+
+Note: Please refer to the provided source code files (main.cpp, mainwindow.cpp, gameengine.hh, functions.hh) for detailed implementation and comments by the author.
+
+
+======================
+======================
+======================
+
+EXTRA FUTURES (MENTIONED IN PROJECT DOCUMENT) ADDED:
+
+1- Dices have been implemented with the png figures.
+2- Drawn dices not just appear, but their rolling has been animated.
+3- The user can set the number of players in the user interface.
+4- It is possible to give names for the players. 
+5- The game includes a score board for storing the results (points) the players have earned.  The stored data is preserved between games (i.e. the data is stored into a file). It is saved in a file named scoreBoard.txt 
+6- The background color of the user interface changes, when the game is over. Resetting the game sets the original color.
+7- The game has a pause button, from which the user can pause the timer. This is possible only when the game is on. Pause has e.g. the effect that the game does not response to key commands any more. The game informs about the pause for the user. 
+
+======================
+======================
+
+
+Futures I have implemented by myself:
+
+1- When you first click "Start Game" button the lock boxes are disabled. Lock button will be enabled when ROLL button is first clicked.
+
+2- Users can "Give Turn" to other players whenever they want EXCEPT when you first click "Give Turn" the "Give Turn" button (as well ass lock buttons) will be disabled because simply the game JUST gave turn to other player. In order to "Give Turn" again you must roll.
+
+3- Even if you "Give Turn" to all players the game might not end if there are players who still have roll turn trials left. In order to see the winner and end the game you must simply give turn again untill all the players use their all 3 turns.
+
+4- RESULT/QUIT button work as: If you click the button before the background changes (meaning before the game ends/winner displayed) it will end the game and show the winner so far. Then simply click second time and the GUI window will be closed.
+
+    if (gameIsOver) close();
+    else gameOver();
+
+This is the logic.
+
+5- In order to enter player names you must select the correspondent amount of players through spin box. If you select 2 players you cannot enter player name more than 2.
+
+6- If the current player used all roll turn trials (3) the ROLL button will be disabled. This will let the user to give his turn to other players.
+
+7- When user clicks PAUSE, ROLL and Give Turn buttons will be disabled.
+
